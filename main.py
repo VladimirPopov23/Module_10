@@ -15,7 +15,7 @@ class Bank:
         for i in range(100):
             refill = randint(50, 500)
             self.balance += refill
-            print(f'Пополнение: {refill}. Баланс: {self.balance}')
+            print(f'Пополнение: {refill}. Баланс: {self.balance}\n', end='')
         if self.balance >= 500 and self.lock.locked() == True:
             self.lock.release()
         time.sleep(0.001)
@@ -24,12 +24,12 @@ class Bank:
     def take(self):
         for i in range(100):
             cut = randint(50, 500)
-            print(f'Запрос на {cut}')
+            print(f'Запрос на {cut}\n', end='')
             if cut <= self.balance:
                 self.balance -= cut
-                print(f'Снятие: {cut}. Баланс: {self.balance}')
+                print(f'Снятие: {cut}. Баланс: {self.balance}\n', end='')
             else:
-                print(f'Запрос отклонён, недостаточно средств')
+                print(f'Запрос отклонён, недостаточно средств\n', end='')
                 self.lock.acquire()
                 return self.balance
 
